@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_VERTEX 100
+
 typedef struct nodoL {
   int vertex;
   int distance;
@@ -12,6 +17,6 @@ typedef struct Graph {
 } Graph;
 
 Graph *createGraph(int vertex_count);
-void addEdge(Graph *graph, int vertex1, int vertex2);
+void addEdge(Graph *graph, int vertex_A, int vertex_B, int distance);
 void printGraph(Graph *graph);
-void printPath(Graph *graph, int vertex1, int vertex2);
+void readFiletoGraph(Graph *graph, FILE *file);

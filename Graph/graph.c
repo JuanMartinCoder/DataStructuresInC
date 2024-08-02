@@ -1,20 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#define MAX_VERTICES 100
-
-typedef struct nodoL {
-  int vertex;
-  int distance;
-  struct nodoL *next;
-} nodoL;
-
-typedef nodoL *T_List;
-
-typedef struct Graph {
-  int vertex_count;
-  T_List *list;
-} Graph;
+#include "graph.h"
 
 Graph *createGraph(int vertex_count) {
   Graph *graph = (Graph *)malloc(sizeof(Graph));
@@ -51,12 +35,4 @@ void printGraph(Graph *graph) {
     }
     printf("\n");
   }
-}
-
-int main() {
-  Graph *graph = createGraph(5);
-  FILE *file = fopen("graph.txt", "r");
-  readFiletoGraph(graph, file);
-  printGraph(graph);
-  return 0;
 }
