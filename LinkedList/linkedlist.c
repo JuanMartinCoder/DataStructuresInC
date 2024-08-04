@@ -49,9 +49,75 @@ void insert_pos(T_list *List, int data, int pos) {
   }
   free(temp);
 }
-void delete_beg(T_list *List) {}
-void delete_end(T_list *List) {}
-void delete_pos(T_list *List, int pos) {}
-int search(T_list *List, int data) {}
-int size(T_list *List) {}
-void printList(T_list *List) {}
+
+void delete_beg(T_list *List) {
+  node_L *temp = List->List;
+  List->List = List->List->next;
+  free(temp);
+  List->size--;
+}
+
+void delete_end(T_list *List) {
+  node_L *temp = List->List;
+  node_L *prev = NULL;
+  while (temp->next != NULL) {
+    prev = temp;
+    temp = temp->next;
+  }
+  prev->next = NULL;
+  free(temp);
+  List->size--;
+}
+
+void delete_pos(T_list *List, int pos) {
+  node_L *temp, *prev;
+  int i = 0;
+  if (List->List != NULL) {
+    if (pos == 0) {
+      temp = List->List;
+      List->List = List->List->next;
+      free(temp);
+      List->size--;
+    } else {
+      temp = List->List;
+      while (temp != NULL && i < pos - 1) {
+        prev = temp;
+        temp = temp->next;
+        i++;
+      }
+      if (temp != NULL && i == pos - 1) {
+        prev->next = temp->next;
+        free(temp);
+        List->size--;
+      }
+    }
+  }
+}
+
+int search(T_list *List, int data) {
+  int i = 0;
+  node_L *temp = List->List;
+  while (i < List->size && data != temp->data) {
+    temp = temp->next;
+    i++;
+  }
+  if (temp->data == data) {
+    return i;
+  } else {
+    return -1;
+  }
+}
+
+int size(T_list *List) { return List->size; }
+
+void printList(T_list *List) {
+  printf("List size: %d\n", List->size);
+  node_L *temp = List->List;
+  while (temp != NULL) {
+    printf("%d->", temp->data);
+    temp = temp->next;
+    if (temp == NULL) {
+      printf("NULL\n");
+    }
+  }
+}
