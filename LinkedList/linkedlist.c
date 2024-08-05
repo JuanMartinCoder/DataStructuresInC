@@ -6,17 +6,27 @@ T_list *createList() {
   List->List = NULL;
   return List;
 }
+
 void insert_end(T_list *List, int data) {
+
   node_L *new_node = (node_L *)malloc(sizeof(node_L));
-  node_L *temp = List->List;
   new_node->data = data;
-  new_node->next = NULL;
-  while (temp->next != NULL) {
-    temp = temp->next;
+  if (List->List == NULL) {
+    new_node->next = List->List;
+    List->List = new_node;
+  } else {
+    node_L *temp = List->List;
+    node_L *prev = NULL;
+    while (temp != NULL) {
+      prev = temp;
+      temp = temp->next;
+    }
+    new_node->next = temp;
+    prev->next = new_node;
   }
-  temp->next = new_node;
   List->size++;
 }
+
 void insert_beg(T_list *List, int data) {
   node_L *new_node = (node_L *)malloc(sizeof(node_L));
   new_node->data = data;
