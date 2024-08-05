@@ -13,3 +13,4 @@ void addNode(Tree *root, int data);
 int getHeight(Tree root);
 void addNode_BST(Tree *root, int data);
 int getMaximumBST(Tree root);
+int getMinimumBST(Tree root);
