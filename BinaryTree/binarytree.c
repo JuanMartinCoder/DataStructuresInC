@@ -57,3 +57,26 @@ int getMinimumBST(Tree root) {
   else
     return -1;
 }
+
+void printTree_PreOrder(Tree root) {
+  if (root != NULL) {
+    printf("%d ", root->data);
+    printTree_PreOrder(root->left);
+    printTree_PreOrder(root->right);
+  }
+}
+
+void printTree_Inorder(Tree root) {
+  if (root != NULL) {
+    printTree_Inorder(root->left);
+    printf("%d ", root->data);
+    printTree_Inorder(root->right);
+  }
+}
+void printTree_PostOrder(Tree root) {
+  if (root != NULL) {
+    printTree_PostOrder(root->left);
+    printTree_PostOrder(root->right);
+    printf("%d ", root->data);
+  }
+}
